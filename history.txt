@@ -1,0 +1,433 @@
+    1  clear
+    2  # Docker
+    3  sudo apt update && sudo apt install docker.io -y
+    4  # Ansible
+    5  sudo apt install ansible -y
+    6  # Minikube (Kubernetes)
+    7  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    8  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+    9  # Start Minikube
+   10  minikube start --driver=docker
+   11  sudo systemctl start docker
+   12  sudo systemctl enable docker
+   13  dcoker ps
+   14  docker --version
+   15  ansible --version
+   16  docker ps
+   17  sudo docker ps
+   18  sudo usermod -aG docker ubuntu
+   19  exit
+   20  docker ps
+   21  clear
+   22  minikube start
+   23  kubectl get pods
+   24  sudo snap install kubectl
+   25  sudo snap install kubectl --classic
+   26  kubectl get pods
+   27  mkdir project && cd project
+   28  mkdir webapp k8s-manifests
+   29  ls
+   30  cd webapp
+   31  vi app.py
+   32  vi requirements.txt
+   33  vi Dockerfile
+   34  docker build -t df-image .
+   35  docker images
+   36  cd ./k8s-manifests
+   37  ../k8s-manifests/
+   38  cd ../k8s-manifests/
+   39  vi deployment.yaml
+   40  cd ../webapp
+   41  ls
+   42  docker images
+   43  docker login -u aashisaxena15
+   44  docker tag df-image aashisaxena15/webapp-image
+   45  docker push aashisaxena15/webapp-image
+   46  cd ../k8s-manifests
+   47  ls
+   48  vi deployment.yaml
+   49  vi service.yaml
+   50  minikube status
+   51  kubectl apply -f deployment.yaml
+   52  kubectl apply -f service.yaml
+   53  kubectl get pods
+   54  kubectl describe pods/webapp-deployment-58b6c9bdc8-hdlk6
+   55  eval $(minikube docker-env)
+   56  vi deployment.yaml
+   57  kubectl apply -f deployment.yaml
+   58  kubectl get pods
+   59  kubectl describe pods/webapp-deployment-57d5474999-httmd
+   60  kubectl logs -f webapp-deployment-57d5474999-httmd
+   61  cd ../webapp
+   62  ls
+   63  vi app.py
+   64  docker build -t image2 .
+   65  docker images
+   66  docker tag image2 aashisaxena15/webapp-image:latest
+   67  docker push aashisaxena15/webapp-image:latest
+   68  cd ../k8s-manifests
+   69  ls
+   70  vi deployment.yaml
+   71  kubectl apply -f deployment.yaml
+   72  kubectl get pods
+   73  kubectl apply -f service.yaml
+   74  kubectl get all
+   75  cd ..
+   76  ls
+   77  eval $(minikube docker-env)
+   78  vi playbook.yaml
+   79  ansible-galaxy collection install community.docker
+   80  ansible-playbook deploy.yaml
+   81  ansible-playbook playbook.yaml
+   82  kubectl get pods
+   83  kubectl get services
+   84  minikube service webapp-service --url
+   85  kubectl get svc
+   86  minikube ip
+   87  rm -rf project
+   88  ls
+   89  docker images
+   90  docker ps
+   91  docker rm -f $(docker ps -aq)
+   92  docker ps -a
+   93  docker images
+   94  clear
+   95  ls
+   96  mkdir project
+   97  cd project
+   98  mkdir webapp
+   99  vi app.py
+  100  vi requirements.txt
+  101  vi Dockerfile
+  102  ls
+  103  cp Dockerfile app.py requirements.txt ./webapp
+  104  ls
+  105  cd webapp
+  106  ls
+  107  cd ..
+  108  rm -f Dockerfile app.py requirements.txt
+  109  ls
+  110  mkdir playbook && cd playbook
+  111  ls
+  112  deploy-multi-containers.yaml
+  113  vi deploy-multi-containers.yaml
+  114  cd project
+  115  ls
+  116  cd playbook
+  117  ls
+  118  vi deploy-multi-containers.yaml
+  119  vi deploy.yaml
+  120  vi inventory.ini
+  121  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  122  ls
+  123  cd ..
+  124  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  125  cd project
+  126  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  127  docker ps
+  128  docker ps -a
+  129  ansible-playbook -i playbook/inventory.ini playbook/deploy-multi-container.yaml
+  130  cd playbook
+  131  ls
+  132  cd ..
+  133  ansible-playbook -i playbook/inventory.ini playbook/deploy-multi-containers.yaml
+  134  docker ps
+  135  docker ps -a
+  136  cd project
+  137  ls
+  138  cd playbook
+  139  ls
+  140  vi deploy.yaml
+  141  cd ..
+  142  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  143  docker rm -f(docker ps -aq)
+  144  docker rm -f $(docker ps -aq)
+  145  docker ps -aq
+  146  docker ps -a
+  147  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  148  docker ps
+  149  docker ps -a
+  150  cat playbook/deploy.yaml
+  151  docker logs ansible-flask-container
+  152  ls
+  153  cat webapp/app.py
+  154  cd webapp
+  155  vi deploy.yaml
+  156  ls
+  157  vi app.py
+  158  cd ..
+  159  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  160  docker rm -f $(docker ps -aq)
+  161  ansible-playbook -i playbook/inventory.ini playbook/deploy.yaml
+  162  docker ps
+  163  docker ps -a
+  164  ls
+  165  cd project
+  166  ls
+  167  cd playbook
+  168  ls
+  169  cat deploy.yaml
+  170  cd ..
+  171  cat Docker
+  172  cd webapp
+  173  ls
+  174  cat Dockerfile
+  175  cd ..
+  176  ls
+  177  cd playbook/
+  178  ls
+  179  cat inventory.ini
+  180  cd ..
+  181  ls
+  182  mkdir k8s-manifests
+  183  cd k8s-manifests/
+  184  ls
+  185  cd project
+  186  ls
+  187  cd k8s-manifests/
+  188  ls
+  189  pwd
+  190  cd project
+  191  ls
+  192  cd playbook
+  193  ls
+  194  which python3
+  195  cd project
+  196  ls
+  197  cd k8s-manifests
+  198  ls
+  199  vi deployment.yaml
+  200  cd ../playbook
+  201  ls
+  202  cat deploy.yaml
+  203  cd ../k8s-manifests/
+  204  vi deployment.yaml
+  205  minikube status
+  206  systemctl start docker
+  207  sudo systemctl start docker
+  208  minikube start
+  209  minikube status
+  210  minikube delete
+  211  minikube start --driver=docker --memory=4096 --cpus=2
+  212  minikube status
+  213  kubectl apply -f deployment.yaml
+  214  vi deployment.yaml
+  215  kubectl apply -f deployment.yaml
+  216  kubectl get pods
+  217  kubectl get pods -w
+  218  kubectl apply -f service.yaml
+  219  kubectl get pods -o wide
+  220  kubectl get all
+  221  kubectl delete all --all
+  222  kubectl get all
+  223  cd ../playbook
+  224  ls
+  225  vi deploy.yaml
+  226  ansible-galaxy collection install community.docker kubernetes.core
+  227  ansible playbook -i inventory.ini deploy.yaml
+  228  ansible-playbook -i inventory.ini deploy.yaml
+  229  docker rm -f $(docker ps -aq)
+  230  ansible-playbook -i inventory.ini deploy.yaml
+  231  pip install kubernetes
+  232  sudo apt install python3-pip
+  233  vi deploy.yaml
+  234  pip install kubernetes
+  235  ansible-playbook -i inventory.ini deploy.yaml
+  236  ls
+  237  vi deploy.yaml
+  238  ansible-playbook -i inventory.ini deploy.yaml
+  239  docker rm -f $(docker ps -aq)
+  240  ansible-playbook -i inventory.ini deploy.yaml
+  241  vi inventory.ini
+  242  docker rm -f $(docker ps -aq)
+  243  ansible-playbook -i inventory.ini deploy.yaml
+  244  vi deploy.yaml
+  245  vi inventory.ini
+  246  sudo /usr/bin/python3 -m pip install kubernetes
+  247  sudo apt update
+  248  sudo apt install python3-venv python3-pip -y
+  249  python3 -m venv ~/ansible-venv
+  250  source ~/ansible-venv/bin/activate
+  251  pip install kubernetes docker
+  252  realpath ~/ansible-venv/bin/python
+  253  /home/ubuntu/ansible-venv/bin/python
+  254  rm -rf ~/ansible-venv
+  255  python3 -m venv --copies ~/ansible-venv
+  256  source ~/ansible-venv/bin/activate
+  257  realpath ~/ansible-venv/bin/python
+  258  pip install kubernetes docker
+  259  cd project/playbook
+  260  vi inventory.ini
+  261  ansible-playbook -i inventory.ini deploy.yaml
+  262  docker rm -f $(docker ps -aq)
+  263  ansible-playbook -i inventory.ini deploy.yaml
+  264  rm -rf ~/ansible-venv
+  265  python3 -m venv --copies ~/ansible-venv
+  266  source ~/ansible-venv/bin/activate
+  267  which python
+  268  which ansible-playbook
+  269  which kubernetes
+  270  pip install ansible
+  271  which ansible
+  272  which ansible-playbook
+  273  pip show kubernetes
+  274  pip show docker
+  275  pip install kubernetes docker
+  276  pip show docker
+  277  pip show kubernetes
+  278  docker rm -f $(docker ps -aq)
+  279  vi inventory.ini
+  280  source ~/ansible-venv/bin/activate
+  281  ansible-playbook -i inventory.ini deploy.yaml
+  282  which python
+  283  which ansible
+  284  pip show docker
+  285  pip show kubernetes
+  286  cat deploy.yaml
+  287  cat inventory.ini
+  288  docker rm -f $(docker ps -aq)
+  289  vi deploy.yaml
+  290  docker rm -f $(docker ps -aq)
+  291  ansible-playbook -i inventory.ini deploy.yaml
+  292  minikube status
+  293  sudo systemctl start docker
+  294  minikube status
+  295  minikube start
+  296  minikube delete
+  297  minikube start --kubernetes-version=v1.29.3 --driver=docker
+  298  kubectl config get-contexts
+  299  kubectl get pods
+  300  minikube ip
+  301  docker rm -f $(docker ps -aq)
+  302  ansible-playbook -i inventory.ini deploy.yaml
+  303  docker ps
+  304  docker ps -a
+  305  docker rm -f $(docker ps -aq)
+  306  docker ps -a
+  307  cd project/playbook && ansible-playbook -i inventory.ini deploy.yaml
+  308  minikube status
+  309  minikube start
+  310  sudo systemctl start docker
+  311  sudo systemctl enable docker
+  312  minikube start --driver=docker
+  313  minikube delete
+  314  minikube status
+  315  docker volume prune -a
+  316  docker prune
+  317  docker --help
+  318  docker prune -h
+  319  clear
+  320  docker ps
+  321  docker rm -f $(docker ps -aq)
+  322  docker ps -a
+  323  minikube start
+  324  minikube delete
+  325  minikube start --driver=docker --cpu=2 --memory=4028MB
+  326  minikube start --driver=docker --cpus=2 --memory=4096mb
+  327  minikube status
+  328  minikube ip
+  329  curl https://192.168.49.2:8443/version --insecure
+  330  ansible-galaxy collection install kubernetes.core
+  331  export K8S_AUTH_KUBECONFIG=~/.kube/config
+  332  ansible-playbook -i inventory.ini deploy.yaml
+  333  cat deploy.yaml
+  334  cd ../k8s-manifests
+  335  vi deployment.yaml
+  336  docker rm -f $(docker ps -aq)
+  337  cat deployment.yaml
+  338  ansible-playbook -i inventory.ini deploy.yaml
+  339  cd ../playbook/
+  340  ansible-playbook -i inventory.ini deploy.yaml
+  341  minikube status
+  342  minikube start --driver=docker --cpus=2 --memory=4096mb
+  343  minikube delete
+  344  😂
+  345  😩
+  346  docker ps
+  347  docker ps -a
+  348  docker rm -f $(docker ps -aq)
+  349  # for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+  350  ARCH=amd64
+  351  PLATFORM=$(uname -s)_$ARCH
+  352  curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+  353  # (Optional) Verify checksum
+  354  curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+  355  tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+  356  eksctl
+  357  eksctl --version
+  358  eksctl version
+  359  docker ps
+  360  docker ps -a
+  361  eksctl version
+  362  aws configure
+  363  sudo snap install aws-cli
+  364  sudo snap install aws-cli --classic
+  365  aws configure
+  366  eksctl create cluster   --name devops-eks-cluster   --region ap-south-1   --nodegroup-name devops-nodes   --node-type t3.medium   --nodes 2   --nodes-min 1   --nodes-max 3   --ssh-access   --ssh-public-key myKeyPair   --managed
+  367  aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName'
+  368  eksctl create cluster   --name devops-eks-cluster   --region ap-south-1   --nodegroup-name devops-nodes   --node-type t3.medium   --nodes 2   --nodes-min 1   --nodes-max 3   --ssh-access   --ssh-public-key ubuntu-kp   --managed
+  369  eksctl get nodes
+  370  kubectl get nodes
+  371  kubectl label node ip-192-168-14-248.ap-south-1.compute.internal role=ansible-node
+  372  kubectl get nodes
+  373  cat ~/.kube/config
+  374  source ~/ansible-venv/bin/activate
+  375  ls
+  376  cd project
+  377  ls
+  378  cd ..
+  379  pip install kubernetes openshift
+  380  ansible-galaxy collection install kubernetes.core
+  381  cat project/playbook/deploy.yaml
+  382  vi project/playbook/deploy.yaml
+  383  cd project/playbook
+  384  ansible-playbook -i inventory.ini deploy.yaml
+  385  cd ..
+  386  ls
+  387  cd k8s-manifests/
+  388  vi service
+  389  cat service.yaml
+  390  docker rm -f $(docker ps -aq)
+  391  docker ps
+  392  docker ps -a
+  393  docker rm -f $(docker ps -aq)
+  394  ansible-playbook -i inventory.ini deploy.yaml
+  395  cd ../playbook
+  396  ansible-playbook -i inventory.ini deploy.yaml
+  397  kubectl get nodes
+  398  kubectl get all
+  399  vi deploy.yaml
+  400  cd ../k8s-manifests/
+  401  vi deployment.yaml
+  402  vi service.yaml
+  403  cd ..
+  404  ls
+  405  cd webapp
+  406  ls
+  407  vi app.py
+  408  vi Dockerfile
+  409  vi requirements.txt
+  410  cd ..
+  411  ls
+  412  history.
+  413  history
+  414  cd project
+  415  git clone https://github.com/aashisaxena15/Dockerized-Web-App-Using-Ansible-on-K8s.git
+  416  ls
+  417  cp -r k8s-manifests  /Dockerized-Web-App-Using-Ansible-on-K8s
+  418  cp -r k8s-manifests  ./Dockerized-Web-App-Using-Ansible-on-K8s
+  419  cp -r playbook  ./Dockerized-Web-App-Using-Ansible-on-K8s
+  420  cp -r webapp  ./Dockerized-Web-App-Using-Ansible-on-K8s
+  421  ls
+  422  cd Dockerized-Web-App-Using-Ansible-on-K8s/
+  423  ls
+  424  cd ..
+  425  rm -rf k8s-manifests/ playbook/ webapp/
+  426  ls
+  427  cd Dockerized-Web-App-Using-Ansible-on-K8s/
+  428  git init
+  429  git add .
+  430  git status
+  431  git commit -m "files committed.."
+  432  git push -u origin main
+  433  history
