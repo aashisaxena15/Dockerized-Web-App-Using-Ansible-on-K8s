@@ -1,0 +1,40 @@
+- name: Build, push, and run Flask Docker container via Ansible
+  hosts: localhost
+  vars:
+    docker_username: "aashisaxena15"
+    docker_password: "Aashi1512$"  # ⚠️ Consider using ansible-vault to encrypt this
+    image_name: "ansible-dockerized-app"
+    full_image_name: "{{ docker_username }}/{{ image_name }}:latest"
+    build_path: "/tmp/webapp"
+  tasks:
+
+    - name: Copy webapp files to /tmp/webapp
+      copy:
+        src: ../webapp/
+        dest: "{{ build_path }}"
+        mode: '0755'
+
+    - name: Build Docker image from copied webapp
+      command: docker build -t {{ full_image_name }} .
+      args:
+        chdir: "{{ build_path }}"
+
+    - name: Login to Docker Hub
+      command: docker login -u {{ docker_username }} -p {{ docker_password }}
+      no_log: true
+
+    - name: Push Docker image to Docker Hub
+      command: docker push {{ full_image_name }}
+
+    - name: Apply Kubernetes deployment manifest
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        definition: "{{ lookup('file', '../k8s-manifests/deployment.yaml') }}"
+
+    - name: Apply Kubernetes service manifest
+      kubernetes.core.k8s:
+        kubeconfig: ~/.kube/config
+        state: present
+        definition: "{{ lookup('file', '../k8s-manifests/service.yaml') }}"
+
