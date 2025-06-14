@@ -4,7 +4,6 @@ Project 3: Deploy Dockerized Web App Using Ansible on K8s Approach - Manually se
 
 # 🚀 Dockerized Flask Web App Deployment using Ansible on Kubernetes
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Docker](https://img.shields.io/badge/Built%20With-Docker-blue?logo=docker)](https://www.docker.com/)
 [![Ansible](https://img.shields.io/badge/Automated%20By-Ansible-red?logo=ansible)](https://www.ansible.com/)
 [![Kubernetes](https://img.shields.io/badge/Deployed%20On-Kubernetes-blue?logo=kubernetes)](https://kubernetes.io/)
